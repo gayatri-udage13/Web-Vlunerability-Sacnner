@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Vulnerability Scanner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">
+    <h2>🔐 Scanner</h2>
+    <div>
+        <a href="/history">History</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <h1>Web Vulnerability Scanner</h1>
+
+    <form method="POST" class="scan-box">
+        <input type="text" name="url" placeholder="Enter Website URL..." required>
+        <button type="submit">Scan</button>
+    </form>
+
+    {% if result %}
+    <div class="result-card">
+        <h2>Scan Results</h2>
+
+        <div class="result-item">
+            <span>SQL Injection</span>
+            <span class="{{ 'danger' if '⚠️' in result.sql else 'safe' }}">{{ result.sql }}</span>
+        </div>
+
+        <div class="result-item">
+            <span>XSS</span>
+            <span class="{{ 'danger' if '⚠️' in result.xss else 'safe' }}">{{ result.xss }}</span>
+        </div>
+
+        <div class="result-item">
+            <span>Headers</span>
+            <span>{{ result.headers }}</span>
+        </div>
+
+        <div class="result-item">
+            <span>Forms Found</span>
+            <span>{{ result.forms }}</span>
+        </div>
+
+        <div class="result-item">
+            <span>Open Ports</span>
+            <span>{{ result.ports }}</span>
+        </div>
+
+        <div class="result-item">
+            <span>Phishing</span>
+            <span>{{ result.phishing }}</span>
+        </div>
+
+        <a href="/download" class="download-btn">Download Report</a>
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scan History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="logo">🔐 SecureScan</div>
+    <div>
+        <a href="/">Home</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+
+<h1>Scan History</h1>
+
+<div class="history-container">
+
+{% for row in data %}
+<div class="history-card">
+
+    <h3>{{ row.url }}</h3>
+
+    <p><strong>SQL:</strong> 
+        <span class="{{ 'danger' if '⚠️' in row.sql else 'safe' }}">
+            {{ row.sql }}
+        </span>
+    </p>
+
+    <p><strong>XSS:</strong> 
+        <span class="{{ 'danger' if '⚠️' in row.xss else 'safe' }}">
+            {{ row.xss }}
+        </span>
+    </p>
+
+    <p><strong>Headers:</strong> {{ row.headers }}</p>
+    <p><strong>Forms:</strong> {{ row.forms }}</p>
+    <p><strong>Ports:</strong> {{ row.ports }}</p>
+
+    <p><strong>Phishing:</strong> 
+        <span class="{{ 'danger' if '⚠️' in row.phishing else 'safe' }}">
+            {{ row.phishing }}
+        </span>
+    </p>
+
+</div>
+{% endfor %}
+
+</div>
+
+</div>
+
+</body>
+</html>

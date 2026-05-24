@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - SecureScan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+</head>
+
+<body>
+
+<div class="auth-container">
+
+    <h2>📝 Create Account</h2>
+    <p class="subtitle">Join SecureScan</p>
+
+    <form method="POST">
+         <input type="text" name="name" placeholder="Enter your Name " required>
+
+        <input type="text" name="username" placeholder="Enter Email or Username" required>
+
+        <input type="password" name="password" placeholder="Enter Password" required>
+
+        <button type="submit">Register</button>
+
+    </form>
+
+    <div class="links">
+        <a href="/login">Already have an account? Login</a>
+    </div>
+
+</div>
+
+</body>
+</html>
